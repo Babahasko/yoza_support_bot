@@ -8,7 +8,7 @@ import (
 )
 
 func dc(args ...string) error {
-	cmd := exec.Command("docker-compose", args...)
+	cmd := exec.Command("docker", append([]string{"compose"}, args...)...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	return cmd.Run()
