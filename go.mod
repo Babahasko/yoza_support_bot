@@ -1,6 +1,6 @@
 module yozatune_support_bot
 
-go 1.26.3
+go 1.27.1
 
 require (
 	github.com/PaulSonOfLars/gotgbot/v2 v2.0.0-rc.35
