@@ -24,10 +24,29 @@ func Load() (*Config, error) {
 		return nil, fmt.Errorf("BOT_TOKEN is not set")
 	}
 
-	dbURL := os.Getenv("DATABASE_URL")
-	if dbURL == "" {
-		return nil, fmt.Errorf("DATABASE_URL is not set")
+	dbUser := os.Getenv("POSTGRES_USER")
+	dbPassword := os.Getenv("POSTGRES_PASSWORD")
+	dbName := os.Getenv("POSTGRES_DB")
+	dbHost := os.Getenv("POSTGRES_HOST")
+
+	if dbUser == "" {
+		return nil, fmt.Errorf("POSTGRES_USER is not set")
 	}
+
+	if dbPassword == "" {
+		return nil, fmt.Errorf("POSTGRES_PASSWORD is not set")
+	}
+
+	if dbName == "" {
+		return nil, fmt.Errorf("POSTGRES_DB is not set")
+	}
+
+	if dbHost == "" {
+		return nil, fmt.Errorf("POSTGRES_HOST is not set")
+	}
+
+
+	dbURL := fmt.Sprintf("postgres://%s:%s@%s:5432/%s?sslmode=disable", dbUser, dbPassword, dbHost, dbName)
 
 	supportChatStr := os.Getenv("SUPPORT_CHAT_ID")
 	if supportChatStr == "" {

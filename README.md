@@ -25,26 +25,20 @@ Telegram-бот поддержки: пересылает вопросы поль
 - [mage](https://magefile.org): `go install github.com/magefile/mage@latest`
 - [ngrok](https://ngrok.com) для вебхука (или убрать `WEBHOOK_URL` из `.env` для polling)
 
-### Запуск
+### Запуск с ngrok
 
 ```bash
 # 1. Скопировать и заполнить конфиг
 cp .env.example .env
-
-# 2. Поднять БД
-mage db
-
-# 3. Запустить бота (с polling — без ngrok)
-go run ./cmd/bot
-
-# 4. Или с вебхуком через ngrok:
+# 2. Запускаем ngrok
 ngrok http 8080
 # Прописать полученный URL в .env → WEBHOOK_URL=https://xxxx.ngrok-free.app
-go run ./cmd/bot
+docker-compose -f docker-compose.yml up -d
 ```
 
 ### Команды mage
 
+TODO: К mage есть вопросики
 | Команда | Описание |
 |---|---|
 | `mage start` | Собрать образы и запустить всё в фоне |
